@@ -1,11 +1,11 @@
 package org.test;
 
 public class User {
-    String fullName;
-    String login;
-    String password;
+    private String fullName;
+    private String login;
+    private String password;
 
-    User(String uName, String uLogin, String uPassword){
+    public User(String uName, String uLogin, String uPassword){
         fullName = uName;
         login = uLogin;
         password = uPassword;

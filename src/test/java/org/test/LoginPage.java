@@ -6,13 +6,13 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
-    String xPathNameEmail = "st.email";
-    String xPathNamePassword = "st.password";
-    String xPathButton = "//*[contains(@class,\"button-pro __wide\")]";
+    private By emailField = By.name("st.email");
+    private By passwordField = By.name("st.password");
+    private By loginButton = By.xpath("//*[contains(@class,\"button-pro __wide\")]");
 
     public void login(User user){
-        $(By.name(xPathNameEmail)).shouldBe(visible.because("Не отображается поле для вводя логина!")).setValue(user.getLogin());
-        $(By.name(xPathNamePassword)).shouldBe(visible.because("Не отображается поле для вводя пароля!")).setValue(user.getPassword());
-        $(By.xpath(xPathButton)).shouldBe(visible.because("Не отображается кнопка \"Войти в Одноклассники\"!")).click();
+        $(emailField).shouldBe(visible.because("Не отображается поле для вводя логина!")).setValue(user.getLogin());
+        $(passwordField).shouldBe(visible.because("Не отображается поле для вводя пароля!")).setValue(user.getPassword());
+        $(loginButton).shouldBe(visible.because("Не отображается кнопка \"Войти в Одноклассники\"!")).click();
     }
 }
