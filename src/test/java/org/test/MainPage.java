@@ -26,7 +26,7 @@ public class MainPage {
         $(textNoteStarter).click();
         $(textNoteInput).setValue(text);
         $(textNoteSubmitButton).click();
-        sleep(1000);
+        $(textNoteInput).shouldNot(visible);
     }
 
     public ArrayList <FeedElem> getFeedList() {
