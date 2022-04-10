@@ -25,7 +25,7 @@ public class Autotests {
     }
 
     @Test
-    public void LoginTest() {
+    public void loginTest() {
         open("https://ok.ru");
         LoginPage lp = new LoginPage();
         MainPage mp = lp.login(user);
@@ -35,7 +35,7 @@ public class Autotests {
     }
 
     @Test
-    public void MakeNoteTest() {
+    public void makeNoteTest() {
         String noteTestHeader = "Header";
         String noteTestText = "Test";
 
