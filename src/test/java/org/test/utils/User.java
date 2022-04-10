@@ -1,4 +1,4 @@
-package org.test;
+package org.test.utils;
 
 public class User {
     private String fullName;
