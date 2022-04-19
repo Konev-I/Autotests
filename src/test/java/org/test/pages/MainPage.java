@@ -66,4 +66,5 @@ public class MainPage extends BasePage{
         toolbar.openMessages();
         return new MessagePage();
     }
+
 }
