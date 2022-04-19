@@ -10,10 +10,10 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTest {
-    private User user;
+    private static User user;
 
-    @BeforeEach
-    public void init(){
+    @BeforeAll
+    public static void init(){
         user = new User("Иван Конев", "", "");
     }
 

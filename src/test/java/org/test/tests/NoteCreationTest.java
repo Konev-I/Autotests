@@ -1,9 +1,6 @@
 package org.test.tests;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.test.pages.LoginPage;
 import org.test.pages.MainPage;
 import org.test.pages.NotesPage;
@@ -18,12 +15,12 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class NoteCreationTest {
-    private User user;
-    private String noteTestHeader;
-    private String noteTestText;
+    private static User user;
+    private static String noteTestHeader;
+    private static String noteTestText;
 
-    @BeforeEach
-    public void init(){
+    @BeforeAll
+    public static void init(){
         user = new User("Иван Конев", "", "");
         noteTestHeader = "Header";
         noteTestText = "Test";
