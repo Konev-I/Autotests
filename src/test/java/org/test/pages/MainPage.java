@@ -31,11 +31,13 @@ public class MainPage extends BasePage{
     }
 
     public String getName(){
-        return $(userFullName).shouldBe(visible.because("Имя пользователя не отображается!")).getText();
+        SelenideElement userFullNameElem = $(userFullName).shouldBe(visible.because("Имя пользователя не отображается!"));
+        return userFullNameElem.getText();
     }
 
     public MainPage makeNote(NewNote note){
-        $(textNoteStarter).shouldBe(visible.because("Кнопка начала создания заметки не отображается!")).click();
+        SelenideElement textNoteStarterElem = $(textNoteStarter).shouldBe(visible.because("Кнопка начала создания заметки не отображается!"));
+        textNoteStarterElem.click();
         note.send();
         return this;
     }
@@ -58,7 +60,8 @@ public class MainPage extends BasePage{
     }
 
     public NotesPage openNotePage(){
-        $(notePageButton).shouldBe(visible.because("Кнопка перехода на траницу заметок не отображается!")).click();
+        SelenideElement notePageButtonElem = $(notePageButton).shouldBe(visible.because("Кнопка перехода на траницу заметок не отображается!"));
+        notePageButtonElem.click();
         return new NotesPage();
     }
 

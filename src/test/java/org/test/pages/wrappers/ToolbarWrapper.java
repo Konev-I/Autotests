@@ -14,6 +14,7 @@ public class ToolbarWrapper {
     }
 
     public void openMessages(){
-        toolbar.$(messageButton).shouldBe(visible.because("Кнопка \"сообщения\" не отображается!")).click();
+        SelenideElement messageButtonElem = toolbar.$(messageButton).shouldBe(visible.because("Кнопка \"сообщения\" не отображается!"));
+        messageButtonElem.click();
     }
 }

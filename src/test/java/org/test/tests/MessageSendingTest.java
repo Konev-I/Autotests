@@ -11,11 +11,9 @@ import org.test.pages.MessagePage;
 import org.test.pages.wrappers.MessageWrapper;
 import org.test.utils.User;
 
-import static com.codeborne.selenide.Selenide.closeWindow;
-import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class MessageSendingTest {
+public class MessageSendingTest extends BaseTest{
     private static User user;
 
     @BeforeAll
@@ -27,11 +25,10 @@ public class MessageSendingTest {
     @ParameterizedTest
     @ValueSource(strings = {"test", "Hello!", "¯\\_(ツ)_/¯"})
     public void sendMessageTest(String message) {
-        open("https://ok.ru");
-        LoginPage lp = new LoginPage();
-        MainPage mp = lp.login(user);
+        LoginPage loginPage = new LoginPage();
+        MainPage mainPage = loginPage.login(user);
 
-        MessagePage messagePage = mp.openMessagePage();
+        MessagePage messagePage = mainPage.openMessagePage();
         messagePage.openChat("Спутник").sendMessage(message);
 
         MessageWrapper lastSendMsg = messagePage.getLastSendMessage();
@@ -41,6 +38,5 @@ public class MessageSendingTest {
     @AfterEach
     public void end(){
         new MessagePage().getLastSendMessage().deleteMessage();
-        closeWindow();
     }
 }
