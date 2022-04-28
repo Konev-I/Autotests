@@ -1,5 +1,6 @@
 package org.test.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -19,7 +20,9 @@ public class NotesPage extends BasePage{
     }
 
     public void deleteLastNote(){
-        $(optionList).shouldBe(visible.because("Элемент для вызова меню не отображается!")).click();
-        $(deleteButton).shouldBe(visible.because("Кнопка для удаления не отображается!")).click();
+        SelenideElement optionListElem = $(optionList).shouldBe(visible.because("Элемент для вызова меню не отображается!"));
+        optionListElem.click();
+        SelenideElement deleteButtonElem = $(deleteButton).shouldBe(visible.because("Кнопка для удаления не отображается!"));
+        deleteButtonElem.click();
     }
 }

@@ -5,11 +5,9 @@ import org.test.pages.LoginPage;
 import org.test.pages.MainPage;
 import org.test.utils.User;
 
-import static com.codeborne.selenide.Selenide.closeWindow;
-import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LoginTest {
+public class LoginTest extends BaseTest{
     private static User user;
 
     @BeforeAll
@@ -20,15 +18,8 @@ public class LoginTest {
     @DisplayName("Test of login on ok.ru")
     @Test
     public void loginTest() {
-        open("https://ok.ru");
-        LoginPage lp = new LoginPage();
-        MainPage mp = lp.login(user);
-        assertEquals(mp.getName(), user.getFullName(), "Попытка входа провалилась!");
-
-    }
-
-    @AfterEach
-    public void end(){
-        closeWindow();
+        LoginPage loginPage = new LoginPage();
+        MainPage mainPage = loginPage.login(user);
+        assertEquals(mainPage.getName(), user.getFullName(), "Попытка входа провалилась!");
     }
 }

@@ -14,17 +14,23 @@ public class MessageWrapper {
     private By confirmDeleteButton = By.xpath("//msg-button[contains(@data-tsid,'confirm-primary')]");
 
     public MessageWrapper(SelenideElement message){
+        message.shouldBe(visible.because("Сообщение не отображается!"));
         this.message = message;
     }
 
     public String getMessageText(){
-        return message.$(msgText).shouldBe(visible.because("Текст сообщения не отображается!")).getText();
+        message.shouldBe(visible.because("Сообщение не отображается!"));
+        SelenideElement msgTextElem = message.$(msgText).shouldBe(visible.because("Текст сообщения не отображается!"));
+        return msgTextElem.getText();
     }
 
     public void deleteMessage(){
         message.shouldBe(visible.because("Сообщение не отображается!")).click();
-        message.$(optionsButton).shouldBe(visible.because("Кнопка дополнительных действий не отображается!")).click();
-        $(deleteButton).shouldBe(visible.because("Кнопка удаления сообщения не отображается!")).click();
-        $(confirmDeleteButton).shouldBe(visible.because("Кнопка подтверждения удаления не отображается!")).click();
+        SelenideElement optionsButtonElem = message.$(optionsButton).shouldBe(visible.because("Кнопка дополнительных действий не отображается!"));
+        optionsButtonElem.click();
+        SelenideElement deleteButtonElem = $(deleteButton).shouldBe(visible.because("Кнопка удаления сообщения не отображается!"));
+        deleteButtonElem.click();
+        SelenideElement confirmDeleteButtonElem = $(confirmDeleteButton).shouldBe(visible.because("Кнопка подтверждения удаления не отображается!"));
+        confirmDeleteButtonElem.click();
     }
 }

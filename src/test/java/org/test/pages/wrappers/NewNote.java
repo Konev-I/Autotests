@@ -1,5 +1,6 @@
 package org.test.pages.wrappers;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import java.util.ArrayList;
@@ -35,23 +36,32 @@ public class NewNote {
     }
 
     private void makeHeader(){
-        $(moreOptionsButton).shouldBe(visible.because("Не отображается кнопка дополнительных действий!")).click();
-        $(headerAddButton).shouldBe(visible.because("Не отображается кнопка добавления заголовка!")).click();
-        $(headerField).shouldBe(visible.because("Не отображается поле для ввода заголовка!")).setValue(header);
+        SelenideElement moreOptionsButtonElem = $(moreOptionsButton).shouldBe(visible.because("Не отображается кнопка дополнительных действий!"));
+        moreOptionsButtonElem.click();
+        SelenideElement headerAddButtonElem = $(headerAddButton).shouldBe(visible.because("Не отображается кнопка добавления заголовка!"));
+        headerAddButtonElem.click();
+        SelenideElement headerFieldElem = $(headerField).shouldBe(visible.because("Не отображается поле для ввода заголовка!"));
+        headerFieldElem.setValue(header);
     }
 
     private void makeText(){
-        $(textField).shouldBe(visible.because("Не отображается поле для ввода текста!")).setValue(text);
+        SelenideElement textFieldElem = $(textField).shouldBe(visible.because("Не отображается поле для ввода текста!"));
+        textFieldElem.setValue(text);
     }
 
     private void makeQuiz(){
-        $(addQuizButton).shouldBe(visible.because("Не отображается кнопка добавления опроса!")).click();
-        $(questionField).shouldBe(visible.because("Не отображается поле для ввода вопроса!")).setValue(quizQuestion);
-        $(answerFieldFirst).shouldBe(visible.because("Не отображается поле для ввода ответа!")).setValue(answers.get(0));
-        for (int i = 1; i < answers.size(); i++){
-            $(answerFieldLast).shouldBe(visible.because("Не отображается поле для ввода ответа!")).setValue(answers.get(i));
-        }
+        SelenideElement addQuizButtonElem = $(addQuizButton).shouldBe(visible.because("Не отображается кнопка добавления опроса!"));
+        addQuizButtonElem.click();
+        SelenideElement questionFieldElem = $(questionField).shouldBe(visible.because("Не отображается поле для ввода вопроса!"));
+        questionFieldElem.setValue(quizQuestion);
+        SelenideElement answerFieldFirstElem = $(answerFieldFirst).shouldBe(visible.because("Не отображается поле для ввода ответа!"));
+        answerFieldFirstElem.setValue(answers.get(0));
 
+        SelenideElement answerFieldLastElem;
+        for (int i = 1; i < answers.size(); i++){
+            answerFieldLastElem = $(answerFieldLast).shouldBe(visible.because("Не отображается поле для ввода ответа!"));
+            answerFieldLastElem.setValue(answers.get(i));
+        }
     }
 
     public void send(){
@@ -67,7 +77,8 @@ public class NewNote {
             makeQuiz();
         }
 
-        $(submitButton).click();
+        SelenideElement submitButtonElem = $(submitButton).shouldBe(visible.because("Кнопка для отправки поста не отображается!"));
+        submitButtonElem.click();
         $(textField).shouldNot(visible.because("Не дождались автоматического закрытия окна!"));
     }
 }

@@ -1,5 +1,6 @@
 package org.test.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.test.pages.wrappers.MessageWrapper;
 
@@ -24,23 +25,29 @@ public class MessagePage extends BasePage{
     }
 
     public MessagePage openChat(String chatName){
-        $(searchUserField).shouldBe(visible.because("Поле для поиска чатов не отображается!")).setValue(chatName);
-        $(By.xpath("//msg-search-results-item[//span[text() = '"+chatName+"']]")).shouldBe(visible.because("Чат не найден!")).click();
+        SelenideElement searchUserFieldElem = $(searchUserField).shouldBe(visible.because("Поле для поиска чатов не отображается!"));
+        searchUserFieldElem.setValue(chatName);
+        SelenideElement chatElem = $(By.xpath("//msg-search-results-item[//span[text() = '"+chatName+"']]")).shouldBe(visible.because("Чат не найден!"));
+        chatElem.click();
         return this;
     }
 
     public MessagePage sendMessage(String msgText){
-        $(messageInputField).shouldBe(visible.because("Поле для ввода сообщения не отображается!")).setValue(msgText);
-        $(sendButton).shouldBe(visible.because("Кнопка для отправки сообщения не отображается!")).click();
+        SelenideElement messageInputFieldElem = $(messageInputField).shouldBe(visible.because("Поле для ввода сообщения не отображается!"));
+        messageInputFieldElem.setValue(msgText);
+        SelenideElement sendButtonElem = $(sendButton).shouldBe(visible.because("Кнопка для отправки сообщения не отображается!"));
+        sendButtonElem.click();
         return this;
     }
 
     public MessagePage sendMessage(int botButton){
-        $$(botButtonsMsg).get(botButton).shouldBe(visible.because("В сообщении не найдена кнопка для ответа!")).click();
+        SelenideElement botButtonElem = $$(botButtonsMsg).get(botButton).shouldBe(visible.because("В сообщении не найдена кнопка для ответа!"));
+        botButtonElem.click();
         return this;
     }
 
     public MessageWrapper getLastSendMessage(){
-        return new MessageWrapper($(lastSendMessage).shouldBe(visible.because("Последнее отправленное сообщение не отображается!")));
+        SelenideElement lastSendMessageElem = $(lastSendMessage).shouldBe(visible.because("Последнее отправленное сообщение не отображается!"));
+        return new MessageWrapper(lastSendMessageElem);
     }
 }

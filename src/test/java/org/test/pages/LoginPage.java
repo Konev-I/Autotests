@@ -1,5 +1,6 @@
 package org.test.pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.test.utils.User;
 
@@ -16,9 +17,12 @@ public class LoginPage extends BasePage{
     }
 
     public MainPage login(User user){
-        $(emailField).shouldBe(visible.because("Не отображается поле для вводя логина!")).setValue(user.getLogin());
-        $(passwordField).shouldBe(visible.because("Не отображается поле для ввода пароля!")).setValue(user.getPassword());
-        $(loginButton).shouldBe(visible.because("Не отображается кнопка \"Войти в Одноклассники\"!")).click();
+        SelenideElement emailInputElem = $(emailField).shouldBe(visible.because("Не отображается поле для вводя логина!"));
+        emailInputElem.setValue(user.getLogin());
+        SelenideElement passwordInputElem = $(passwordField).shouldBe(visible.because("Не отображается поле для ввода пароля!"));
+        passwordInputElem.setValue(user.getPassword());
+        SelenideElement loginButtonElem = $(loginButton).shouldBe(visible.because("Не отображается кнопка \"Войти в Одноклассники\"!"));
+        loginButtonElem.click();
         return new MainPage();
     }
 

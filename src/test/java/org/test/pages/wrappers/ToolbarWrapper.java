@@ -2,6 +2,7 @@ package org.test.pages.wrappers;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import org.test.pages.MessagePage;
 
 import static com.codeborne.selenide.Condition.visible;
 
@@ -13,7 +14,9 @@ public class ToolbarWrapper {
         this.toolbar = tb;
     }
 
-    public void openMessages(){
-        toolbar.$(messageButton).shouldBe(visible.because("Кнопка \"сообщения\" не отображается!")).click();
+    public MessagePage openMessages(){
+        SelenideElement messageButtonElem = toolbar.$(messageButton).shouldBe(visible.because("Кнопка \"сообщения\" не отображается!"));
+        messageButtonElem.click();
+        return new MessagePage();
     }
 }
