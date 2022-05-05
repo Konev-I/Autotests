@@ -1,10 +1,10 @@
-package org.test.pages;
+package org.test.pages.page;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import org.test.pages.common.Toolbar;
 import org.test.pages.wrappers.FeedElemWrapper;
 import org.test.pages.wrappers.NewNote;
-import org.test.pages.wrappers.ToolbarWrapper;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -12,13 +12,13 @@ import java.util.Optional;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-public class MainPage extends BasePage{
+public class MainPage extends BasePage {
     private By userFullName = By.xpath("//*[contains(@class,\"tico ellip\")]");
 
     private By textNoteStarter = By.xpath("//a[contains(@class, 'pf-head_itx_a')]");
     private By feedElems = By.xpath("//div[contains(@class, 'feed-w')]");
     private By notePageButton = By.xpath("//a[contains(@data-l,'t,userStatuses')]");
-    private ToolbarWrapper toolbar = new ToolbarWrapper($(By.xpath("//div[contains(@data-module,'ToolbarManager')]")));
+    private Toolbar toolbar = new Toolbar($(By.xpath("//div[contains(@data-module,'ToolbarManager')]")));
 
     public MainPage(){
         isLoaded();
@@ -66,7 +66,7 @@ public class MainPage extends BasePage{
     }
 
     public MessagePage openMessagePage(){
-        return toolbar.openMessages();
+        return toolbar.goToMessages();
     }
 
 }

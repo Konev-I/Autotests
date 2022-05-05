@@ -7,9 +7,11 @@ import static com.codeborne.selenide.Selenide.closeWindow;
 import static com.codeborne.selenide.Selenide.open;
 
 public abstract class BaseTest {
+    private String urlOK = "https://ok.ru";
+
     @BeforeEach
     public void initBase(){
-        open("https://ok.ru");
+        open(urlOK);
     }
 
     @AfterEach

@@ -1,4 +1,4 @@
-package org.test.pages;
+package org.test.pages.page;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class MessagePage extends BasePage{
+public class MessagePage extends BasePage {
     private By searchUserField = By.xpath("//input[contains(@name,'chat-search')]");
     private By messageInputField = By.xpath("//msg-input");
     private By sendButton = By.xpath("//msg-button[contains(@data-tsid,'button_send')]");

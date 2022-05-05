@@ -1,18 +1,22 @@
-package org.test.tests;
+package org.test.tests.login;
 
 import org.junit.jupiter.api.*;
-import org.test.pages.LoginPage;
-import org.test.pages.MainPage;
+import org.test.pages.page.LoginPage;
+import org.test.pages.page.MainPage;
+import org.test.tests.BaseTest;
 import org.test.utils.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
     private static User user;
+    private static String userFullName = "Иван Конев";
+    private static String userLogin = "";
+    private static String userPassword = "";
 
     @BeforeAll
     public static void init(){
-        user = new User("Иван Конев", "", "");
+        user = new User(userFullName, userLogin, userPassword);
     }
 
     @DisplayName("Test of login on ok.ru")

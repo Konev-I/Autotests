@@ -1,11 +1,12 @@
-package org.test.tests;
+package org.test.tests.post;
 
 import org.junit.jupiter.api.*;
-import org.test.pages.LoginPage;
-import org.test.pages.MainPage;
+import org.test.pages.page.LoginPage;
+import org.test.pages.page.MainPage;
 import org.test.pages.wrappers.FeedElemWrapper;
 import org.test.pages.wrappers.NewNote;
 import org.test.pages.wrappers.NewNoteBuilder;
+import org.test.tests.BaseTest;
 import org.test.utils.User;
 
 import java.util.Optional;
@@ -13,16 +14,18 @@ import java.util.Optional;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class NoteCreationTest extends BaseTest{
+public class NoteCreationTest extends BaseTest {
     private static User user;
-    private static String noteTestHeader;
-    private static String noteTestText;
+    private static String userFullName = "Иван Конев";
+    private static String userLogin = "";
+    private static String userPassword = "";
+
+    private String noteTestHeader = "Header";
+    private String noteTestText = "Test";
 
     @BeforeAll
     public static void init(){
-        user = new User("Иван Конев", "", "");
-        noteTestHeader = "Header";
-        noteTestText = "Test";
+        user = new User(userFullName, userLogin, userPassword);
     }
 
     @DisplayName("Test of note creation")

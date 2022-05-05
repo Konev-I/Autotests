@@ -1,12 +1,13 @@
-package org.test.pages;
+package org.test.pages.page;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import org.test.pages.page.BasePage;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class NotesPage extends BasePage{
+public class NotesPage extends BasePage {
     private By optionList = By.xpath("//span[contains(@class,'new_topic_icodown')]");
     private By deleteButton = By.xpath("(//div[contains(@id,'hook_Block_ShortcutMenu')]//a[contains(@class,'u-menu')])[last()]");
 

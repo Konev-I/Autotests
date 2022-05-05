@@ -1,22 +1,25 @@
-package org.test.tests;
+package org.test.tests.post;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.test.pages.LoginPage;
-import org.test.pages.MainPage;
+import org.test.pages.page.LoginPage;
+import org.test.pages.page.MainPage;
 import org.test.pages.wrappers.FeedElemWrapper;
+import org.test.tests.BaseTest;
 import org.test.utils.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PostReactionTest extends BaseTest{
+public class PostReactionTest extends BaseTest {
     private static User user;
+    private static String userLogin = "";
+    private static String userPassword = "";
 
     @BeforeAll
     public static void init(){
-        user = new User("Иван Конев", "", "");
+        user = new User(userLogin, userPassword);
     }
 
     @DisplayName("Test of setting reaction on post")

@@ -11,6 +11,11 @@ public class User {
         password = uPassword;
     }
 
+    public User(String uLogin, String uPassword){
+        login = uLogin;
+        password = uPassword;
+    }
+
     public String getFullName() {
         return fullName;
     }
